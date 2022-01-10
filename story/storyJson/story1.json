@@ -1,0 +1,22 @@
+{
+    "label": "opt1a",
+    "prompt": "choose1",
+    "choices": [
+        {
+            "label": "opt2a",
+            "prompt": "choose2a",
+            "choices": null,
+            "requirements": null,
+            "eventTriggers": null
+        },
+        {
+            "label": "opt2b",
+            "prompt": "choose2b",
+            "choices": null,
+            "requirements": null,
+            "eventTriggers": null
+        }
+    ],
+    "requirements": null,
+    "eventTriggers": null
+}

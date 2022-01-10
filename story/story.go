@@ -2,28 +2,30 @@ package story
 
 import (
 	"bufio"
+	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strconv"
 )
 
 type Event struct {
-	Title         string
-	Description   string
-	EventTriggers []*Event
+	Title         string   `json:"title"`
+	Description   string   `json:"description"`
+	EventTriggers []*Event `json:"eventTriggers"`
 }
 type Sequence struct {
-	Label         string
-	Prompt        string
-	Choices       []*Sequence
-	Requirements  []*Requirement
-	EventTriggers []*Event
+	Label         string         `json:"label"`
+	Prompt        string         `json:"prompt"`
+	Choices       []*Sequence    `json:"choices"`
+	Requirements  []*Requirement `json:"requirements"`
+	EventTriggers []*Event       `json:"eventTriggers"`
 }
 type Requirement struct {
-	Event       []*Event
-	Title       string
-	Description string
+	Events      []*Event `json:"events"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
 }
 
 func (node *Sequence) StartSequenceTree() {
@@ -63,6 +65,29 @@ func (node *Sequence) SelectSequenceNode(nodeIndex int) (s *Sequence, e error) {
 		err := errors.New("error: choice index invalid, please choose again")
 		return node, err
 	}
+}
+
+func SequenceFromJSON(path string) (s *Sequence, e error) {
+	jsonFile, err := os.Open(path)
+
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	defer jsonFile.Close()
+
+	byteVal, err := ioutil.ReadAll(jsonFile)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+
+	var sequence Sequence
+
+	json.Unmarshal(byteVal, &sequence)
+
+	return &sequence, err
 }
 
 var Seq_1_root = Sequence{

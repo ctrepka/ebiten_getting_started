@@ -21,6 +21,7 @@ type Attributes struct {
 	Strength  int
 	Wisdom    int
 	Agility   int
+	Speed     int
 	Integrity int
 	Guile     int
 	Ingenuity int
