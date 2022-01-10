@@ -90,39 +90,7 @@ func SequenceFromJSON(path string) (s *Sequence, e error) {
 	return &sequence, err
 }
 
-var Seq_1_root = Sequence{
-	"",
-	"Choose your path:",
-	[]*Sequence{
-		&seq_1_r1a,
-		&seq_1_r1b,
-	},
-	nil,
-	nil,
-}
-
-var seq_1_r1a = Sequence{
-	"Choose sequence r1a",
-	"Okay, you chose r1a. What next?",
-	[]*Sequence{
-		&seq_1_r2a,
-	},
-	nil,
-	nil,
-}
-
-var seq_1_r1b = Sequence{
-	"Choose sequence r1b",
-	"Okay, you chose r1b. Goodbye.",
-	nil,
-	nil,
-	nil,
-}
-
-var seq_1_r2a = Sequence{
-	"Choose sequence r2a",
-	"Okay, you won!",
-	nil,
-	nil,
-	nil,
-}
+//TODO: Add event triggers API routing
+//TODO: Trigger events on choice selection
+//TODO: Add method to add a Sequence to choices
+//TODO: Add method to remove Sequence from choices
